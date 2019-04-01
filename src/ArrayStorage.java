@@ -3,12 +3,19 @@ public class ArrayStorage {
     public Resume[] storage = new Resume[10000];
 
     public void save(Resume res) {
-        if (storage[0] == null)
+        /*if (storage[0] == null)
             storage[0] = res;
         else {
             count++;
             storage[count] = res;
+        }*/
+        int size = size();
+        if (size == 0) {
+            storage[0] = res;
         }
+        storage[count] = res;
+        count++;
+
     }
 
     Resume get(String uuid) {
