@@ -1,5 +1,9 @@
 public class Resume {
-    public String uuID;
+    private String uuID;
+
+    public String getUuId() {
+        return this.uuID;
+    }
 
     public Resume(String uuID){
        this.uuID = uuID;

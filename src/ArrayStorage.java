@@ -1,34 +1,46 @@
 public class ArrayStorage {
     public static int count = 0;
-    public Resume[] storage = new Resume[2];
+    public Resume[] storage = new Resume[10000];
 
-    public void save(Resume res){
-    if (storage[0]==null)
-        storage[0] = res;
-    else
-        storage[count+1] = res;
+    public void save(Resume res) {
+        if (storage[0] == null)
+            storage[0] = res;
+        else {
+            ArrayStorage.count++;
+            storage[count] = res;
+        }
     }
-    Resume get(int i){
+
+    Resume get(int i) {
 
         return storage[i];
     }
-    void delete(){
+
+    void delete(String uuid) {
+        int i = 0;
+        for (; i < storage.length; i++) {
+            if (storage[i].getUuId().equals(uuid))
+                break;
+        }
+
+        for (int j = i; j < storage.length - 1; j++) {
+            storage[j] = storage[j + 1];
+            storage[j + 1] = null;
+        }
 
     }
 
-    void clear(){
-
+    void clear() {
+        for (int i = 0; i < storage.length; i++) {
+            storage[i] = null;
+        }
     }
 
-    public static void main(String[] args) {
-        Resume resume = new Resume("Первое");
-        Resume resume2 = new Resume("Второе");
-        ArrayStorage storageOfResumes = new ArrayStorage();
-        storageOfResumes.save(resume);
-        storageOfResumes.save(resume2);
-        System.out.println(storageOfResumes.get(0) + " " + storageOfResumes.get(1));
-
-
+    void getAll() {
+        for (Resume elems : storage) {
+            System.out.println(elems);
+        }
     }
+
 
 }
