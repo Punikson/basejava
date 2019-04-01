@@ -1,26 +1,35 @@
 public class MainArray {
+    static  final ArrayStorage STORAGE_OF_RESUMES = new ArrayStorage();
 
     public static void main(String[] args) {
-        Resume resume = new Resume("Первое");
-        Resume resume2 = new Resume("Второе");
-        Resume resume3 = new Resume("Третье");
-        Resume resume4 = new Resume("Четвертое");
-        ArrayStorage storageOfResumes = new ArrayStorage();
-        storageOfResumes.save(resume);
-        storageOfResumes.save(resume2);
-        storageOfResumes.save(resume3);
-        storageOfResumes.save(resume4);
-        System.out.print(storageOfResumes.get(0) + " " + storageOfResumes.get(1) + " " + storageOfResumes.get(2));
-        System.out.print("" + " " + storageOfResumes.get(3) + " " + storageOfResumes.get(4));
-        storageOfResumes.delete("Второе");
-        System.out.printf("\n");
-        System.out.print(storageOfResumes.get(0) + " " + storageOfResumes.get(1) + " " + storageOfResumes.get(2));
-        System.out.print("" + " " + storageOfResumes.get(3) + " " + storageOfResumes.get(4));
-        System.out.printf("\n");
-        //storageOfResumes.clear();
-        System.out.print(storageOfResumes.get(0) + " " + storageOfResumes.get(1) + " " + storageOfResumes.get(2));
-        System.out.print("" + " " + storageOfResumes.get(3) + " " + storageOfResumes.get(4));
-        storageOfResumes.getAll();
+        Resume res = new Resume("Первое");
+        Resume res2 = new Resume("Второе");
+        Resume res3 = new Resume("Третье");
+        Resume res4 = new Resume("Четвертое");
 
+        STORAGE_OF_RESUMES.save(res);
+        STORAGE_OF_RESUMES.save(res2);
+        STORAGE_OF_RESUMES.save(res3);
+        STORAGE_OF_RESUMES.save(res4);
+        System.out.println("Get r1: " + STORAGE_OF_RESUMES.get(res.getUuId()));
+        System.out.println("Size: " + STORAGE_OF_RESUMES.size());
+
+        System.out.println("Get dummy: " + STORAGE_OF_RESUMES.get("dummy"));
+
+        printAll();
+        STORAGE_OF_RESUMES.delete(res.getUuId());
+        printAll();
+        STORAGE_OF_RESUMES.clear();
+        printAll();
+
+        System.out.println("Size: " + STORAGE_OF_RESUMES.size());
     }
+        static void printAll(){
+            System.out.println("\nGet All");
+            for (Resume r : STORAGE_OF_RESUMES.getAll()) {
+                System.out.println(r);
+            }
+        }
+
+
 }

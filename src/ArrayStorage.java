@@ -11,35 +11,54 @@ public class ArrayStorage {
         }
     }
 
-    Resume get(int i) {
+    Resume get(String uuid) {
+        int size = size();
+        Resume result = null;
+        for (int i = 0; i < size; i++)
+            if (storage[i].getUuId().equals(uuid))
+                result = storage[i];
+            return result;
 
-        return storage[i];
+
     }
 
     void delete(String uuid) {
         int i = 0;
-        for (; i < storage.length; i++) {
+        int size = size();
+        for (; i < size; i++) {
             if (storage[i].getUuId().equals(uuid))
                 break;
         }
 
-        for (int j = i; j < storage.length - 1; j++) {
+        for (int j = i; j < size; j++) {
             storage[j] = storage[j + 1];
-            storage[j + 1] = null;
+            //storage[j + 1] = null;
         }
 
+    }
+
+    int size(){
+        int c = 0;
+        for (int i = 0; i < storage.length; i++) {
+            if (storage[i]!=null)
+                c++;
+        }
+        return c;
     }
 
     void clear() {
         for (int i = 0; i < storage.length; i++) {
             storage[i] = null;
         }
+        count = 0;
     }
 
-    void getAll() {
-        for (Resume elems : storage) {
-            System.out.println(elems);
+    Resume[] getAll() {
+        Resume[] result = new Resume[size()];
+        for (int i = 0; i < result.length; i++) {
+            result[i]=storage[i];
         }
+        return result;
     }
 
 
