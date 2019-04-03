@@ -3,8 +3,18 @@ public class ArrayStorage {
     private Resume[] storage = new Resume[10000];
 
     public void save(Resume res) {
-        storage[count] = res;
-        count++;
+        int i =0;
+        for (; i < count; i++) {
+            if (storage[i].getUuId().equals(res.getUuId())) {
+                System.out.println("Error. Resume are already exist");
+                break;
+            }
+        }
+
+        if (i == count) {
+            storage[count] = res;
+            count++;
+        }
     }
 
     public Resume get(String uuid) {
@@ -22,8 +32,8 @@ public class ArrayStorage {
                 storage[i] = res;
                 break;
             }
-        if (i==(count)) {
-            System.out.println("\nError. Resume are not found");
+        if (i == (count)) {
+            System.out.println("\nImpossible to update.Resume are not found");
         }
 
     }
@@ -37,7 +47,11 @@ public class ArrayStorage {
         for (int j = i; j < count; j++) {
             storage[j] = storage[j + 1];
         }
-        count--;
+        if (i == (count))
+            System.out.println("\nError. Resume are not found");
+        else
+            count--;
+
     }
 
     public int size() {
