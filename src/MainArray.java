@@ -6,7 +6,6 @@ public class MainArray {
         Resume res2 = new Resume("Второе");
         Resume res3 = new Resume("Третье");
         Resume res4 = new Resume("Четвертое");
-        Resume res5 = new Resume("Четверт");
 
         STORAGE_OF_RESUMES.save(res);
         STORAGE_OF_RESUMES.save(res2);
@@ -17,10 +16,10 @@ public class MainArray {
         System.out.println("Get dummy: " + STORAGE_OF_RESUMES.get("dummy"));
 
         printAll();
-        STORAGE_OF_RESUMES.delete(res5.getUuId());
+        STORAGE_OF_RESUMES.delete(res.getUuId());
         printAll();
         System.out.println("Size: " + STORAGE_OF_RESUMES.size());
-        STORAGE_OF_RESUMES.update(res5);
+        STORAGE_OF_RESUMES.update(res3);
         printAll();
         STORAGE_OF_RESUMES.clear();
         printAll();
