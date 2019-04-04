@@ -24,8 +24,7 @@ public class ArrayStorage {
 
         if (result != -1) {
             System.out.println("Error. Resume are already exist");
-        }
-        else {
+        } else {
             storage[count] = res;
             count++;
         }
@@ -40,13 +39,10 @@ public class ArrayStorage {
     }
 
     public void update(Resume res) {
-        int i = 0;
-        for (; i < count; i++)
-            if (storage[i].getUuId().equals(res.getUuId())) {
-                storage[i] = res;
-                break;
-            }
-        if (i == count) {
+        int result = checkStorage(res);
+        if (result != -1) {
+            storage[result] = res;
+        } else {
             System.out.println("\nImpossible to update.Resume are not found");
         }
 
