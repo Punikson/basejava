@@ -1,6 +1,14 @@
 public class ArrayStorage {
     private int count = 0;
-    private Resume[] storage = new Resume[10000];
+    private Resume[] storage = new Resume[10_000];
+
+    private Resume checkStorage(String uuid){
+        for (int i = 0; i < count; i++)
+            if (storage[i].getUuId().equals(uuid)){
+                return storage[i];
+            }
+        return null;
+    }
 
     public void save(Resume res) {
         int i =0;
@@ -18,11 +26,7 @@ public class ArrayStorage {
     }
 
     public Resume get(String uuid) {
-        for (int i = 0; i < count; i++)
-            if (storage[i].getUuId().equals(uuid)) {
-                return storage[i];
-            }
-        return null;
+            return checkStorage(uuid);
     }
 
     public void update(Resume res) {
@@ -32,26 +36,20 @@ public class ArrayStorage {
                 storage[i] = res;
                 break;
             }
-        if (i == (count)) {
+        if (i == count) {
             System.out.println("\nImpossible to update.Resume are not found");
         }
 
     }
 
     public void delete(String uuid) {
-        int i = 0;
-        for (; i < count; i++) {
-            if (storage[i].getUuId().equals(uuid))
-                break;
+        for (int i = 0; i < count; i++) {
+            if (storage[i].getUuId().equals(uuid)){
+                storage[i] = storage[count-1];
+                storage[count-1] = null;
+                count--;
+            }
         }
-        for (int j = i; j < count; j++) {
-            storage[j] = storage[j + 1];
-        }
-        if (i == (count))
-            System.out.println("\nError. Resume are not found");
-        else
-            count--;
-
     }
 
     public int size() {
