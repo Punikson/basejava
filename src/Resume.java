@@ -1,6 +1,10 @@
 public class Resume {
     private String uuID;
 
+    public Resume() {
+        System.out.println("Error. Resume with this uuid is not in the storage");
+    }
+
     public Resume(String uuID) {
         this.uuID = uuID;
     }

@@ -17,7 +17,7 @@ public class TestMainArray {
         System.out.println("Get dummy: " + STORAGE_OF_RESUMES.get("dummy"));
 
         printAll();
-        STORAGE_OF_RESUMES.delete(res.getUuId());
+        STORAGE_OF_RESUMES.delete(res5.getUuId());
         printAll();
         System.out.println("Size: " + STORAGE_OF_RESUMES.size());
         STORAGE_OF_RESUMES.update(res5);

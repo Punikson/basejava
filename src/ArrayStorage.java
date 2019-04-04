@@ -23,11 +23,11 @@ public class ArrayStorage {
         int result = checkStorage(res);
 
         if (result != -1) {
-            System.out.println("Error. Resume are already exist");
-        } else {
+            System.out.println("Error. Resume is already exist");
+        } else if (count != storage.length) {
             storage[count] = res;
             count++;
-        }
+        } else System.out.println("Error.ArrayIndexOutOfBounds");
     }
 
     public Resume get(String uuid) {
@@ -35,7 +35,7 @@ public class ArrayStorage {
         if (result != -1) {
             return storage[result];
         }
-        return null;
+        return new Resume();
     }
 
     public void update(Resume res) {
@@ -43,7 +43,7 @@ public class ArrayStorage {
         if (result != -1) {
             storage[result] = res;
         } else {
-            System.out.println("\nImpossible to update.Resume are not found");
+            System.out.println("\nImpossible to update.Resume is not found");
         }
 
     }
@@ -54,7 +54,7 @@ public class ArrayStorage {
             storage[result] = storage[count - 1];
             storage[count - 1] = null;
             count--;
-        }
+        } else System.out.println("\nError. Resume with this uuid is not in the storage");
     }
 
     public int size() {
