@@ -43,6 +43,12 @@ public class MainArray {
                     ARRAY_STORAGE.clear();
                     printAll();
                     break;
+                case "update":
+                    r = new Resume("updateRes");
+                    r.setUuID(uuid);
+                    ARRAY_STORAGE.update(r);
+                    printAll();
+                    break;
                 case "exit":
                     return;
                 default:

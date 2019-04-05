@@ -70,9 +70,7 @@ public class ArrayStorage {
 
     public Resume[] getAll() {
         Resume[] result = new Resume[count];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = storage[i];
-        }
+        System.arraycopy(storage, 0, result, 0, count);
         return result;
     }
 }
