@@ -44,7 +44,7 @@ public class MainArray {
                     printAll();
                     break;
                 case "update":
-                    r = new Resume("res2");
+                    r = new Resume(uuid);
                     r.setUuID(uuid);
                     ARRAY_STORAGE.update(r);
                     printAll();

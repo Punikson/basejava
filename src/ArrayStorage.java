@@ -1,10 +1,9 @@
 public class ArrayStorage {
     private int count = 0;
     private Resume[] storage = new Resume[10_000];
-    
-    public void save(Resume res) {
-        int result = getIndex(res);
 
+    public void save(Resume res) {
+        int result = getIndex(res.getUuId());
         if (result != -1) {
             System.out.println("Error. Resume is already exist");
         } else if (count != storage.length) {
@@ -21,11 +20,12 @@ public class ArrayStorage {
             return storage[result];
         }
         System.out.println("Error. Resume with this uuid is not in the storage");
+
         return null;
     }
 
     public void update(Resume res) {
-        int result = getIndex(res);
+        int result = getIndex(res.getUuId());
         if (result != -1) {
             storage[result] = res;
         } else {
@@ -67,15 +67,6 @@ public class ArrayStorage {
             if (storage[i].getUuId().equals(uuid)) {
                 return i;
             }
-        return -1;
-    }
-
-    private int getIndex(Resume r) {
-        for (int i = 0; i < count; i++) {
-            if (storage[i].getUuId().equals(r.getUuId())) {
-                return i;
-            }
-        }
         return -1;
     }
 }
