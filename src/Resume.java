@@ -1,24 +1,20 @@
 public class Resume {
-    private String uuID;
-
-    public Resume() {
-        System.out.println("Error. Resume with this uuid is not in the storage");
-    }
+    private String uuid;
 
     public Resume(String uuID) {
-        this.uuID = uuID;
+        this.uuid = uuID;
     }
 
     public String getUuId() {
-        return this.uuID;
+        return this.uuid;
     }
 
-    public void setUuID(String uuID) {
-        this.uuID = uuID;
+    public void setUuID(String uuid) {
+        this.uuid = uuid;
     }
 
     @Override
     public String toString() {
-        return this.uuID;
+        return this.uuid;
     }
 }

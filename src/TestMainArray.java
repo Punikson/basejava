@@ -15,7 +15,6 @@ public class TestMainArray {
         System.out.println("Get r1: " + STORAGE_OF_RESUMES.get(res.getUuId()));
         System.out.println("Size: " + STORAGE_OF_RESUMES.size());
         System.out.println("Get dummy: " + STORAGE_OF_RESUMES.get("dummy"));
-
         printAll();
         STORAGE_OF_RESUMES.delete(res.getUuId());
         printAll();
@@ -25,7 +24,6 @@ public class TestMainArray {
         STORAGE_OF_RESUMES.clear();
         printAll();
         System.out.println("Size: " + STORAGE_OF_RESUMES.size());
-
     }
 
     static void printAll() {
