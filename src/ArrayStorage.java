@@ -1,7 +1,6 @@
-public class ArrayStorage {
-    private int count = 0;
-    private Resume[] storage = new Resume[10_000];
+import java.util.Arrays;
 
+public class ArrayStorage extends AbstractArrayStorage{
     public void save(Resume res) {
         int result = getIndex(res.getUuId());
         if (result != -1) {
@@ -50,9 +49,7 @@ public class ArrayStorage {
     }
 
     public void clear() {
-        for (int i = 0; i < count; i++) {
-            storage[i] = null;
-        }
+        Arrays.fill(storage,0,count,null);
         count = 0;
     }
 
