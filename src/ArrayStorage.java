@@ -13,16 +13,6 @@ public class ArrayStorage extends AbstractArrayStorage{
         }
     }
 
-    public Resume get(String uuid) {
-        int result = getIndex(uuid);
-        if (result != -1) {
-            return storage[result];
-        }
-        System.out.println("Error. Resume with this uuid is not in the storage");
-
-        return null;
-    }
-
     public void update(Resume res) {
         int result = getIndex(res.getUuId());
         if (result != -1) {
@@ -44,10 +34,6 @@ public class ArrayStorage extends AbstractArrayStorage{
         }
     }
 
-    public int size() {
-        return count;
-    }
-
     public void clear() {
         Arrays.fill(storage,0,count,null);
         count = 0;
@@ -59,7 +45,7 @@ public class ArrayStorage extends AbstractArrayStorage{
         return result;
     }
 
-    private int getIndex(String uuid) {
+    protected int getIndex(String uuid) {
         for (int i = 0; i < count; i++)
             if (storage[i].getUuId().equals(uuid)) {
                 return i;

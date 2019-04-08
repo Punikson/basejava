@@ -1,5 +1,5 @@
 public class TestMainArray {
-    private final static  ArrayStorage STORAGE_OF_RESUMES = new ArrayStorage();
+    private final static  Storage STORAGE_OF_RESUMES = new ArrayStorage();
 
     public static void main(String[] args) {
        final Resume res = new Resume("Первое");

@@ -1,17 +1,16 @@
 public interface Storage {
-    public void save(Resume res);
 
-    public Resume get(String uuid);
+     void save(Resume res);
 
+     Resume get(String uuid);
 
-    public void update(Resume res);
+     void update(Resume res);
 
-    public void delete(String uuid);
+     void delete(String uuid);
 
-    public int size();
-    public void clear();
+     int size();
 
-    public Resume[] getAll();
+     void clear();
 
-    public int getIndex(String uuid);
+     Resume[] getAll();
 }
