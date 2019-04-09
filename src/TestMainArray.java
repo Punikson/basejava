@@ -1,12 +1,12 @@
 public class TestMainArray {
-    private final static  Storage STORAGE_OF_RESUMES = new ArrayStorage();
+    private final static Storage STORAGE_OF_RESUMES = new SortedArrayStorage();
 
     public static void main(String[] args) {
-       final Resume res = new Resume("Первое");
-       final Resume res2 = new Resume("Второе");
-       final Resume res3 = new Resume("Третье");
-       final Resume res4 = new Resume("Четвертое");
-       final Resume res5 = new Resume("Четверт");
+        final Resume res = new Resume("res2");
+        final Resume res2 = new Resume("res4");
+        final Resume res3 = new Resume("res1");
+        final Resume res4 = new Resume("res3");
+        final Resume res5 = new Resume("Четверт");
 
         STORAGE_OF_RESUMES.save(res);
         STORAGE_OF_RESUMES.save(res2);

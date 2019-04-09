@@ -1,49 +1,6 @@
 import java.util.Arrays;
 
-public class ArrayStorage extends AbstractArrayStorage{
-    public void save(Resume res) {
-        int result = getIndex(res.getUuId());
-        if (result != -1) {
-            System.out.println("Error. Resume is already exist");
-        } else if (count != storage.length) {
-            storage[count] = res;
-            count++;
-        } else {
-            System.out.println("Error.ArrayIndexOutOfBounds");
-        }
-    }
-
-    public void update(Resume res) {
-        int result = getIndex(res.getUuId());
-        if (result != -1) {
-            storage[result] = res;
-        } else {
-            System.out.println("\nImpossible to update.Resume is not found");
-        }
-
-    }
-
-    public void delete(String uuid) {
-        int result = getIndex(uuid);
-        if (result != -1) {
-            storage[result] = storage[count - 1];
-            storage[count - 1] = null;
-            count--;
-        } else {
-            System.out.println("\nError. Resume with this uuid is not in the storage");
-        }
-    }
-
-    public void clear() {
-        Arrays.fill(storage,0,count,null);
-        count = 0;
-    }
-
-    public Resume[] getAll() {
-        Resume[] result = new Resume[count];
-        System.arraycopy(storage, 0, result, 0, count);
-        return result;
-    }
+public class ArrayStorage extends AbstractArrayStorage {
 
     protected int getIndex(String uuid) {
         for (int i = 0; i < count; i++)
@@ -51,5 +8,15 @@ public class ArrayStorage extends AbstractArrayStorage{
                 return i;
             }
         return -1;
+    }
+
+    @Override
+    protected void insertElement(Resume res, int result) {
+        storage[count] = res;
+    }
+
+    @Override
+    protected void insertInDeletedPosition(int result) {
+        storage[result] = storage[count - 1];
     }
 }

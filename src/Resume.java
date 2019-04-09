@@ -1,4 +1,4 @@
-public class Resume {
+public class Resume implements Comparable<Resume> {
     private String uuid;
 
     public Resume(String uuID) {
@@ -31,5 +31,10 @@ public class Resume {
     @Override
     public String toString() {
         return this.uuid;
+    }
+
+    @Override
+    public int compareTo(Resume o) {
+        return this.uuid.compareTo(o.uuid);
     }
 }
