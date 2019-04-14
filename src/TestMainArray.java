@@ -6,7 +6,7 @@ public class TestMainArray {
         final Resume res2 = new Resume("res4");
         final Resume res3 = new Resume("res1");
         final Resume res4 = new Resume("res3");
-        final Resume res5 = new Resume("Четверт");
+        final Resume res5 = new Resume("res5");
 
         STORAGE_OF_RESUMES.save(res);
         STORAGE_OF_RESUMES.save(res2);
@@ -19,7 +19,7 @@ public class TestMainArray {
         STORAGE_OF_RESUMES.delete(res.getUuId());
         printAll();
         System.out.println("Size: " + STORAGE_OF_RESUMES.size());
-        STORAGE_OF_RESUMES.update(res5);
+        STORAGE_OF_RESUMES.update(res3);
         printAll();
         STORAGE_OF_RESUMES.clear();
         printAll();

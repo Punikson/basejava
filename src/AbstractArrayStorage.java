@@ -6,11 +6,11 @@ public abstract class AbstractArrayStorage implements Storage {
     protected int count = 0;
 
     public void save(Resume res) {
-        int result = getIndex(res.getUuId());
-        if (result > 0) {
+        int index = getIndex(res.getUuId());
+        if (index >= 0) {
             System.out.println("Error. Resume is already exist");
         } else if (count != storage.length) {
-            insertElement(res, result);
+            insertElement(res, index);
             count++;
         } else {
             System.out.println("Error.ArrayIndexOutOfBounds");
@@ -22,19 +22,18 @@ public abstract class AbstractArrayStorage implements Storage {
     }
 
     public void update(Resume res) {
-        int result = getIndex(res.getUuId());
-        if (result > 0) {
-            storage[result] = res;
+        int index = getIndex(res.getUuId());
+        if (index >= 0) {
+            storage[index] = res;
         } else {
             System.out.println("\nImpossible to update.Resume is not found");
         }
-
     }
 
     public void delete(String uuid) {
-        int result = getIndex(uuid);
-        if (result > 0 || result == 0) {
-            insertInDeletedPosition(result);
+        int index = getIndex(uuid);
+        if (index >= 0) {
+            fillDeletedPosition(index);
             storage[count - 1] = null;
             count--;
         } else {
@@ -48,14 +47,13 @@ public abstract class AbstractArrayStorage implements Storage {
     }
 
     public Resume get(String uuid) {
-        int result = getIndex(uuid);
-        if (result > 0 || result == 0) {
-            return storage[result];
+        int index = getIndex(uuid);
+        if (index >= 0) {
+            return storage[index];
         } else {
             System.out.println("Error. Resume with this uuid is not in the storage");
+            return null;
         }
-
-        return null;
     }
 
     public Resume[] getAll() {
@@ -66,9 +64,9 @@ public abstract class AbstractArrayStorage implements Storage {
 
     protected abstract int getIndex(String uuid);
 
-    protected abstract void insertElement(Resume res, int result);
+    protected abstract void insertElement(Resume res, int index);
 
-    protected abstract void insertInDeletedPosition(int result);
+    protected abstract void fillDeletedPosition(int index);
 }
 
 
