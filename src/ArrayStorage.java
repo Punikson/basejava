@@ -14,7 +14,7 @@ public class ArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    protected void fillDeletedPosition(int result) {
-        storage[result] = storage[count - 1];
+    protected void fillDeletedPosition(int index) {
+        storage[index] = storage[count - 1];
     }
 }
