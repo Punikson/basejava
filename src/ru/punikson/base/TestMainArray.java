@@ -1,3 +1,8 @@
+package ru.punikson.base;
+
+import ru.punikson.base.model.Resume;
+import ru.punikson.base.storage.*;
+
 public class TestMainArray {
     private final static Storage STORAGE_OF_RESUMES = new SortedArrayStorage();
 
@@ -19,7 +24,7 @@ public class TestMainArray {
         STORAGE_OF_RESUMES.delete(res.getUuId());
         printAll();
         System.out.println("Size: " + STORAGE_OF_RESUMES.size());
-        STORAGE_OF_RESUMES.update(res3);
+        STORAGE_OF_RESUMES.update(res4);
         printAll();
         STORAGE_OF_RESUMES.clear();
         printAll();

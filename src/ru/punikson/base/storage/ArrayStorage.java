@@ -1,3 +1,7 @@
+package ru.punikson.base.storage;
+import ru.punikson.base.model.Resume;
+import ru.punikson.base.storage.AbstractArrayStorage;
+
 public class ArrayStorage extends AbstractArrayStorage {
     @Override
     protected int getIndex(String uuid) {

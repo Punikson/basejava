@@ -1,3 +1,5 @@
+package ru.punikson.base.storage;
+import ru.punikson.base.model.Resume;
 import java.util.Arrays;
 
 public class SortedArrayStorage extends AbstractArrayStorage {

@@ -1,3 +1,5 @@
+package ru.punikson.base.storage;
+import ru.punikson.base.model.Resume;
 import java.util.Arrays;
 
 public abstract class AbstractArrayStorage implements Storage {
@@ -26,7 +28,7 @@ public abstract class AbstractArrayStorage implements Storage {
         if (index >= 0) {
             storage[index] = res;
         } else {
-            System.out.println("\nImpossible to update.Resume is not found");
+            System.out.println("\nImpossible to update. Resume is not found");
         }
     }
 

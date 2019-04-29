@@ -1,3 +1,5 @@
+package ru.punikson.base.model;
+
 public class Resume implements Comparable<Resume> {
     private String uuid;
 

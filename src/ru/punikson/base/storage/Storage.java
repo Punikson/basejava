@@ -1,3 +1,6 @@
+package ru.punikson.base.storage;
+import ru.punikson.base.model.Resume;
+
 public interface Storage {
 
      void save(Resume res);

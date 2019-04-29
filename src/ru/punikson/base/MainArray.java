@@ -1,3 +1,7 @@
+package ru.punikson.base;
+
+import ru.punikson.base.model.Resume;
+import ru.punikson.base.storage.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
