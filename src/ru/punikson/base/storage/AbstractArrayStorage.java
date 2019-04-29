@@ -1,4 +1,7 @@
 package ru.punikson.base.storage;
+import ru.punikson.base.exception.ExistStorageException;
+import ru.punikson.base.exception.NotExistStorageException;
+import ru.punikson.base.exception.StorageException;
 import ru.punikson.base.model.Resume;
 import java.util.Arrays;
 
@@ -10,12 +13,12 @@ public abstract class AbstractArrayStorage implements Storage {
     public void save(Resume res) {
         int index = getIndex(res.getUuId());
         if (index >= 0) {
-            System.out.println("Error. Resume is already exist");
+            throw new ExistStorageException(res.getUuId());
         } else if (count != storage.length) {
             insertElement(res, index);
             count++;
         } else {
-            System.out.println("Error.ArrayIndexOutOfBounds");
+            throw new StorageException("Storage overflow",res.getUuId());
         }
     }
 
@@ -28,7 +31,7 @@ public abstract class AbstractArrayStorage implements Storage {
         if (index >= 0) {
             storage[index] = res;
         } else {
-            System.out.println("\nImpossible to update. Resume is not found");
+            throw new NotExistStorageException(res.getUuId());
         }
     }
 
@@ -53,8 +56,7 @@ public abstract class AbstractArrayStorage implements Storage {
         if (index >= 0) {
             return storage[index];
         } else {
-            System.out.println("Error. Resume with this uuid is not in the storage");
-            return null;
+            throw new NotExistStorageException(uuid);
         }
     }
 
