@@ -1,4 +1,4 @@
-package ru.punikson.base.storage;
+package ru.punikson.base;
 
 import ru.punikson.base.model.Resume;
 

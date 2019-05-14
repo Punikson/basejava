@@ -1,8 +1,10 @@
 package ru.punikson.base.storage;
+
 import ru.punikson.base.exception.ExistStorageException;
 import ru.punikson.base.exception.NotExistStorageException;
 import ru.punikson.base.exception.StorageException;
 import ru.punikson.base.model.Resume;
+
 import java.util.Arrays;
 
 public abstract class AbstractArrayStorage implements Storage {
@@ -18,7 +20,7 @@ public abstract class AbstractArrayStorage implements Storage {
             insertElement(res, index);
             count++;
         } else {
-            throw new StorageException("Storage overflow",res.getUuId());
+            throw new StorageException("Storage overflow", res.getUuId());
         }
     }
 
@@ -42,7 +44,8 @@ public abstract class AbstractArrayStorage implements Storage {
             storage[count - 1] = null;
             count--;
         } else {
-            System.out.println("\nError. Resume with this uuid is not in the storage");
+            throw new NotExistStorageException(uuid);
+            //System.out.println("\nError. Resume with this uuid is not in the storage");
         }
     }
 

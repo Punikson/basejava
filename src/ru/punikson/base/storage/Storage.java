@@ -1,19 +1,20 @@
 package ru.punikson.base.storage;
+
 import ru.punikson.base.model.Resume;
 
 public interface Storage {
 
-     void save(Resume res);
+    void save(Resume res);
 
-     Resume get(String uuid);
+    Resume get(String uuid);
 
-     void update(Resume res);
+    void update(Resume res);
 
-     void delete(String uuid);
+    void delete(String uuid);
 
-     int size();
+    int size();
 
-     void clear();
+    void clear();
 
-     Resume[] getAll();
+    Resume[] getAll();
 }

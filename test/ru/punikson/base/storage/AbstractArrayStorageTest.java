@@ -11,23 +11,19 @@ import ru.punikson.base.model.Resume;
 import static org.junit.Assert.*;
 
 public abstract class AbstractArrayStorageTest {
+    private static final String UUID_1 = "uuid1";
+    private static final Resume RES_1 = new Resume(UUID_1);
+    private static final String UUID_2 = "uuid2";
+    private static final Resume RES_2 = new Resume(UUID_2);
+    private static final String UUID_3 = "uuid3";
+    private static final Resume RES_3 = new Resume(UUID_3);
+    private static final String UUID_4 = "uuid4";
+    private static final Resume RES_4 = new Resume(UUID_4);
     private Storage storage;
 
-    public AbstractArrayStorageTest(Storage storage) {
+    protected AbstractArrayStorageTest(Storage storage) {
         this.storage = storage;
     }
-
-    public AbstractArrayStorageTest() {
-    }
-
-    private static final String UUID_1 = "uuid1";
-    public static final Resume RES_1 = new Resume(UUID_1);
-    private static final String UUID_2 = "uuid2";
-    public static final Resume RES_2 = new Resume(UUID_2);
-    private static final String UUID_3 = "uuid3";
-    public static final Resume RES_3 = new Resume(UUID_3);
-    private static final String UUID_4 = "uuid4";
-    public static final Resume RES_4 = new Resume(UUID_4);
 
     @Before
     public void setUp() throws Exception {
@@ -49,11 +45,16 @@ public abstract class AbstractArrayStorageTest {
         assertEquals(3, storage.size());
     }
 
-    @Test(expected = ExistStorageException.class)
+    @Test
     public void update() {
         String UUID_5 = "uuid3";
         Resume RES_5 = new Resume(UUID_5);
-        storage.save(RES_5);
+        try {
+            storage.update(RES_5);
+        } catch (NotExistStorageException e) {
+            Assert.fail("Resume with uuid \"" + RES_5.getUuId() + "\" exists in storage");
+        }
+        storage.update(RES_5);
     }
 
     @Test(expected = NotExistStorageException.class)
@@ -80,20 +81,42 @@ public abstract class AbstractArrayStorageTest {
     public void getAll() {
         Resume[] stor = storage.getAll();
         assertEquals(3, storage.size());
-        assertEquals(RES_1, stor[0]);
-        assertEquals(RES_2, stor[1]);
-        assertEquals(RES_3, stor[2]);
+        assertSame(RES_1, stor[0]);
+        assertSame(RES_2, stor[1]);
+        assertSame(RES_3, stor[2]);
     }
 
     @Test(expected = StorageException.class)
-    public void StorageException() {
+    public void saveOverflow() {
         try {
             for (int i = storage.size(); i < AbstractArrayStorage.STORAGE_LIMIT; i++) {
                 storage.save(new Resume());
             }
         } catch (StorageException e) {
-            Assert.fail();
+            Assert.fail("The overflow happened before the end of array");
         }
         storage.save(new Resume());
+    }
+
+    @Test(expected = ExistStorageException.class)
+    public void saveExist() {
+        String UUID_5 = "uuid3";
+        Resume RES_5 = new Resume(UUID_5);
+        storage.save(RES_5);
+    }
+
+    @Test(expected = NotExistStorageException.class)
+    public void deleteNotExist() {
+        storage.delete(UUID_4);
+    }
+
+    @Test(expected = NotExistStorageException.class)
+    public void getNotExist() {
+        storage.get(UUID_4);
+    }
+
+    @Test(expected = NotExistStorageException.class)
+    public void updateNotExist() {
+        storage.update(RES_4);
     }
 }
