@@ -110,8 +110,8 @@ public abstract class AbstractArrayStorageTest {
     @Test
     public void getAll() {
         Resume[] actual = storage.getAll();
+        assertEquals(3, actual.length);
         Resume[] stor = {RES_1, RES_2, RES_3};
-        assertEquals(3, stor.length);
         assertArrayEquals(stor, actual);
     }
 }
