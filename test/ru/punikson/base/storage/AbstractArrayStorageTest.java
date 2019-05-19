@@ -1,5 +1,6 @@
 package ru.punikson.base.storage;
 
+import com.sun.deploy.util.StringUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -108,8 +109,9 @@ public abstract class AbstractArrayStorageTest {
 
     @Test
     public void getAll() {
-        Resume[] stor = storage.getAll();
-        assertEquals(3, storage.size());
-        assertArrayEquals(storage.getAll(), stor);
+        Resume[] actual = storage.getAll();
+        Resume[] stor = {RES_1, RES_2, RES_3};
+        assertEquals(3, stor.length);
+        assertArrayEquals(stor, actual);
     }
 }
