@@ -11,10 +11,10 @@ public abstract class AbstractStorage implements Storage {
         Object searchKey = getSearchKey(res.getUuId());
         if (isExist(searchKey)) {
             throw new ExistStorageException(res.getUuId());
-        } else doSave(searchKey,res);
+        } else doSave(searchKey, res);
     }
 
-    protected abstract void doSave(Object searchKey,Resume r);
+    protected abstract void doSave(Object searchKey, Resume r);
 
     protected abstract boolean isExist(Object searchKey);
 
@@ -23,13 +23,13 @@ public abstract class AbstractStorage implements Storage {
     public void update(Resume res) {
         Object searchKey = getSearchKey(res.getUuId());
         if (isExist(searchKey)) {
-            doUpdate(searchKey,res);
+            doUpdate(searchKey, res);
         } else {
             throw new NotExistStorageException(res.getUuId());
         }
     }
 
-    protected abstract void doUpdate(Object searchKey,Resume r);
+    protected abstract void doUpdate(Object searchKey, Resume r);
 
     public void delete(String uuid) {
         Object searchKey = getSearchKey(uuid);
