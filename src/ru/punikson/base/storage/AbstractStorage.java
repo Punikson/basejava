@@ -2,7 +2,6 @@ package ru.punikson.base.storage;
 
 import ru.punikson.base.exception.ExistStorageException;
 import ru.punikson.base.exception.NotExistStorageException;
-import ru.punikson.base.exception.StorageException;
 import ru.punikson.base.model.Resume;
 
 public abstract class AbstractStorage implements Storage {
@@ -45,7 +44,6 @@ public abstract class AbstractStorage implements Storage {
 
     public abstract void clear();
 
-
     public Resume get(String uuid) {
         Object searchKey = getSearchKey(uuid);
         if (isExist(searchKey)) {
@@ -60,8 +58,4 @@ public abstract class AbstractStorage implements Storage {
     public abstract Resume[] getAll();
 
     protected abstract Integer getSearchKey(String uuid);
-
-    // protected abstract void insertElement(Resume res, int index);
-
-    //protected abstract void fillDeletedPosition(int index);
 }
