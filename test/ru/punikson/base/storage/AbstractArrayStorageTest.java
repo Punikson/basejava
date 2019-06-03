@@ -55,9 +55,7 @@ public abstract class AbstractArrayStorageTest {
 
     @Test(expected = ExistStorageException.class)
     public void saveExist() {
-        String UUID_5 = "uuid3";
-        Resume RES_5 = new Resume(UUID_5);
-        storage.save(RES_5);
+        storage.save(RES_1);
     }
 
     @Test
