@@ -1,75 +1,64 @@
 package ru.punikson.base.storage;
 
-import ru.punikson.base.exception.ExistStorageException;
-import ru.punikson.base.exception.NotExistStorageException;
 import ru.punikson.base.exception.StorageException;
 import ru.punikson.base.model.Resume;
 
 import java.util.Arrays;
 
-public abstract class AbstractArrayStorage implements Storage {
+public abstract class AbstractArrayStorage extends AbstractStorage {
     protected static final int STORAGE_LIMIT = 10_000;
     protected Resume[] storage = new Resume[STORAGE_LIMIT];
     protected int count = 0;
 
-    public void save(Resume res) {
-        int index = getIndex(res.getUuId());
-        if (index >= 0) {
-            throw new ExistStorageException(res.getUuId());
-        } else if (count != storage.length) {
-            insertElement(res, index);
+    @Override
+    protected boolean isExist(Object searchKey) {
+        return (int) searchKey >= 0;
+    }
+
+    @Override
+    protected void doSave(Object searchKey, Resume r) {
+        if (count != storage.length) {
+            insertElement(r, (Integer) searchKey);
             count++;
         } else {
-            throw new StorageException("Storage overflow", res.getUuId());
+            throw new StorageException("Storage overflow", r.getUuId());
         }
     }
 
+    @Override
     public int size() {
         return count;
     }
 
-    public void update(Resume res) {
-        int index = getIndex(res.getUuId());
-        if (index >= 0) {
-            storage[index] = res;
-        } else {
-            throw new NotExistStorageException(res.getUuId());
-        }
+    @Override
+    protected void doUpdate(Object searchKey, Resume r) {
+        storage[(int) ((Integer) searchKey)] = r;
     }
 
-    public void delete(String uuid) {
-        int index = getIndex(uuid);
-        if (index >= 0) {
-            fillDeletedPosition(index);
-            storage[count - 1] = null;
-            count--;
-        } else {
-            throw new NotExistStorageException(uuid);
-            //System.out.println("\nError. Resume with this uuid is not in the storage");
-        }
+    @Override
+    protected void doDelete(Object searchKey) {
+        fillDeletedPosition((Integer) searchKey);
+        storage[count - 1] = null;
+        count--;
     }
 
+    @Override
     public void clear() {
         Arrays.fill(storage, 0, count, null);
         count = 0;
     }
 
-    public Resume get(String uuid) {
-        int index = getIndex(uuid);
-        if (index >= 0) {
-            return storage[index];
-        } else {
-            throw new NotExistStorageException(uuid);
-        }
+    @Override
+    protected Resume doGet(Object searchKey) {
+        return storage[(int) searchKey];
     }
 
+    @Override
     public Resume[] getAll() {
         Resume[] result = new Resume[count];
         System.arraycopy(storage, 0, result, 0, count);
         return result;
     }
-
-    protected abstract int getIndex(String uuid);
 
     protected abstract void insertElement(Resume res, int index);
 
