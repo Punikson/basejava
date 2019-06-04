@@ -4,7 +4,7 @@ import ru.punikson.base.model.Resume;
 import ru.punikson.base.storage.*;
 
 public class TestMainArray {
-    private final static Storage STORAGE_OF_RESUMES = new SortedArrayStorage();
+    private final static Storage STORAGE_OF_RESUMES = new ListStorage();
 
     public static void main(String[] args) {
         final Resume res = new Resume("res2");
@@ -19,7 +19,7 @@ public class TestMainArray {
         STORAGE_OF_RESUMES.save(res4);
         System.out.println("Get r1: " + STORAGE_OF_RESUMES.get(res.getUuId()));
         System.out.println("Size: " + STORAGE_OF_RESUMES.size());
-        System.out.println("Get dummy: " + STORAGE_OF_RESUMES.get("dummy"));
+       // System.out.println("Get dummy: " + STORAGE_OF_RESUMES.get("dummy"));
         printAll();
         STORAGE_OF_RESUMES.delete(res.getUuId());
         printAll();
