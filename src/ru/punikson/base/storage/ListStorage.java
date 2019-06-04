@@ -52,10 +52,10 @@ public class ListStorage extends AbstractStorage {
 
     @Override
     protected Integer getSearchKey(String uuid) {
-        for (Iterator it = list.iterator(); it.hasNext(); ) {
-            Resume res = (Resume) it.next();
-            if (res.getUuId().equals(uuid))
-                return list.indexOf(res);
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getUuId().equals(uuid)) {
+                return i;
+            }
         }
         return null;
     }
