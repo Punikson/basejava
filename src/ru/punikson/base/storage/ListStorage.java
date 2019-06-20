@@ -3,7 +3,6 @@ package ru.punikson.base.storage;
 import ru.punikson.base.model.Resume;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class ListStorage extends AbstractStorage {
@@ -31,7 +30,7 @@ public class ListStorage extends AbstractStorage {
 
     @Override
     protected void doDelete(Object searchKey) {
-        list.remove((int)searchKey);
+        list.remove((int) searchKey);
     }
 
     @Override
@@ -46,8 +45,7 @@ public class ListStorage extends AbstractStorage {
 
     @Override
     public Resume[] getAll() {
-        Resume[] r = list.toArray(new Resume[list.size()]);
-        return r;
+        return list.toArray(new Resume[list.size()]);
     }
 
     @Override

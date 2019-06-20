@@ -12,10 +12,9 @@ public abstract class AbstractStorage implements Storage {
             throw new ExistStorageException(res.getUuId());
         } else doSave(searchKey, res);
     }
+    protected abstract boolean isExist(Object searchKey);
 
     protected abstract void doSave(Object searchKey, Resume r);
-
-    protected abstract boolean isExist(Object searchKey);
 
     public abstract int size();
 
@@ -57,5 +56,5 @@ public abstract class AbstractStorage implements Storage {
 
     public abstract Resume[] getAll();
 
-    protected abstract Integer getSearchKey(String uuid);
+    protected abstract Object getSearchKey(String uuid);
 }
