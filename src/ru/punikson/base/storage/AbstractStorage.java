@@ -12,11 +12,6 @@ public abstract class AbstractStorage implements Storage {
             throw new ExistStorageException(res.getUuId());
         } else doSave(searchKey, res);
     }
-    protected abstract boolean isExist(Object searchKey);
-
-    protected abstract void doSave(Object searchKey, Resume r);
-
-    public abstract int size();
 
     public void update(Resume res) {
         Object searchKey = getSearchKey(res.getUuId());
@@ -27,8 +22,6 @@ public abstract class AbstractStorage implements Storage {
         }
     }
 
-    protected abstract void doUpdate(Object searchKey, Resume r);
-
     public void delete(String uuid) {
         Object searchKey = getSearchKey(uuid);
         if (isExist(searchKey)) {
@@ -38,11 +31,7 @@ public abstract class AbstractStorage implements Storage {
             //System.out.println("\nError. Resume with this uuid is not in the storage");
         }
     }
-
-    protected abstract void doDelete(Object searchKey);
-
-    public abstract void clear();
-
+    
     public Resume get(String uuid) {
         Object searchKey = getSearchKey(uuid);
         if (isExist(searchKey)) {
@@ -52,9 +41,21 @@ public abstract class AbstractStorage implements Storage {
         }
     }
 
+    protected abstract boolean isExist(Object searchKey);
+
+    protected abstract void doSave(Object searchKey, Resume r);
+
+    public abstract int size();
+
     protected abstract Resume doGet(Object searchKey);
 
     public abstract Resume[] getAll();
 
     protected abstract Object getSearchKey(String uuid);
+
+    protected abstract void doUpdate(Object searchKey, Resume r);
+
+    protected abstract void doDelete(Object searchKey);
+
+    public abstract void clear();
 }
