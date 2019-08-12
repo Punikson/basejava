@@ -6,19 +6,19 @@ import ru.punikson.base.model.Resume;
 
 public abstract class AbstractStorage implements Storage {
 
-    public void save(Resume res) {
-        Object searchKey = getSearchKey(res.getUuId());
+    public void save(Resume resume) {
+        Object searchKey = getSearchKey(resume.getUuId());
         if (isExist(searchKey)) {
-            throw new ExistStorageException(res.getUuId());
-        } else doSave(searchKey, res);
+            throw new ExistStorageException(resume.getUuId());
+        } else doSave(searchKey, resume);
     }
 
-    public void update(Resume res) {
-        Object searchKey = getSearchKey(res.getUuId());
+    public void update(Resume resume) {
+        Object searchKey = getSearchKey(resume.getUuId());
         if (isExist(searchKey)) {
-            doUpdate(searchKey, res);
+            doUpdate(searchKey, resume);
         } else {
-            throw new NotExistStorageException(res.getUuId());
+            throw new NotExistStorageException(resume.getUuId());
         }
     }
 
@@ -28,10 +28,9 @@ public abstract class AbstractStorage implements Storage {
             doDelete(searchKey);
         } else {
             throw new NotExistStorageException(uuid);
-            //System.out.println("\nError. Resume with this uuid is not in the storage");
         }
     }
-    
+
     public Resume get(String uuid) {
         Object searchKey = getSearchKey(uuid);
         if (isExist(searchKey)) {
@@ -43,7 +42,7 @@ public abstract class AbstractStorage implements Storage {
 
     protected abstract boolean isExist(Object searchKey);
 
-    protected abstract void doSave(Object searchKey, Resume r);
+    protected abstract void doSave(Object searchKey, Resume resume);
 
     public abstract int size();
 
@@ -53,7 +52,7 @@ public abstract class AbstractStorage implements Storage {
 
     protected abstract Object getSearchKey(String uuid);
 
-    protected abstract void doUpdate(Object searchKey, Resume r);
+    protected abstract void doUpdate(Object searchKey, Resume resume);
 
     protected abstract void doDelete(Object searchKey);
 

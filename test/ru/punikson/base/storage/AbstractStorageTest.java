@@ -1,16 +1,14 @@
 package ru.punikson.base.storage;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import ru.punikson.base.exception.ExistStorageException;
 import ru.punikson.base.exception.NotExistStorageException;
-import ru.punikson.base.exception.StorageException;
 import ru.punikson.base.model.Resume;
 
 import static org.junit.Assert.*;
 
-public abstract class AbstractArrayStorageTest {
+public abstract class AbstractStorageTest {
     private static final String UUID_1 = "uuid1";
     private static final Resume RES_1 = new Resume(UUID_1);
     private static final String UUID_2 = "uuid2";
@@ -21,7 +19,7 @@ public abstract class AbstractArrayStorageTest {
     private static final Resume RES_4 = new Resume(UUID_4);
     private Storage storage;
 
-    protected AbstractArrayStorageTest(Storage storage) {
+    protected AbstractStorageTest(Storage storage) {
         this.storage = storage;
     }
 
@@ -38,18 +36,6 @@ public abstract class AbstractArrayStorageTest {
         storage.save(RES_4);
         assertEquals(4, storage.size());
         assertEquals(RES_4, storage.get(UUID_4));
-    }
-
-    @Test(expected = StorageException.class)
-    public void saveOverflow() {
-        try {
-            for (int i = storage.size(); i < AbstractArrayStorage.STORAGE_LIMIT; i++) {
-                storage.save(new Resume());
-            }
-        } catch (StorageException e) {
-            Assert.fail("The overflow happened before the end of array");
-        }
-        storage.save(new Resume());
     }
 
     @Test(expected = ExistStorageException.class)
